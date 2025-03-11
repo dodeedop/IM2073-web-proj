@@ -40,14 +40,18 @@ public class EShopDisplayServlet extends HttpServlet {
              
             // Step 4: Process the ResultSet by scrolling the cursor forward via next().
             while (rs.next()) {
-                out.println("<input type='checkbox' name='author' value='" + rs.getString("author") + "' />" + rs.getString("author") + "<br />");
+                out.println("<input type='checkbox' name='author' value='" + rs.getString("author") + "' />" + rs.getString("author"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        out.println("<br />");
+        out.println("<br /><br />");
+        out.println("Choose a price range:");
+        out.println("<input type='radio' name='price' value='50' />less than $50");
+        out.println("<input type='radio' name='price' value='100' />less than $100");
+        out.println("<br /><br />");
         out.println("<input type='submit' value='Search' />");
+        out.println("<input type='reset' value='Clear' />");
         out.println("</form>");
         out.println("</body></html>");
         out.close();
