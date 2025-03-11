@@ -60,7 +60,16 @@ public class EshopQueryServlet extends HttpServlet {
          // Step 4: Process the query result
          // Print the <form> start tag
          out.println("<form method='get' action='eshoporder'>");
-
+         if (!rset.isBeforeFirst()) 
+         {  // Check if the ResultSet is empty before the first row
+            out.println("<h2>No books found for the selected authors under the price of $" + price + "0. Please select again.</h2>");
+         } else 
+         {
+            // Print the <form> start tag
+            out.println("<form method='get' action='eshoporder'>");
+            // Print the table start tag
+            out.println("<table border='1'>");
+            out.println("<tr><th>Select</th><th>Author</th><th>Title</th><th>Price</th></tr>");
          // Print the table start tag
          out.println("<table border='1'>");
          out.println("<tr><th>Select</th><th>Author</th><th>Title</th><th>Price</th></tr>");
@@ -87,7 +96,8 @@ public class EshopQueryServlet extends HttpServlet {
          out.println("<p><input type='submit' value='ORDER' />");
          out.println("</form>");
          // === Step 4 ends HERE - Do NOT delete the following codes ===
-      } catch(SQLException ex) {
+      }
+   } catch(SQLException ex) {
          out.println("<p>Error: " + ex.getMessage() + "</p>");
          out.println("<p>Check Tomcat console for details.</p>");
          ex.printStackTrace();
