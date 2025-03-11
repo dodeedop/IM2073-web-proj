@@ -17,39 +17,45 @@ public class EShopDisplayServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
-        out.println("<html>");
-        out.println("<head><title>Yet Another e-Bookshop</title></head>");
+        out.println("<html lang='en'>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.println("<title>Yet Another e-Bookshop</title>");
+        out.println("<style>");
+        out.println("body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }");
+        out.println("h2 { color: #333; }");
+        out.println("form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }");
+        out.println("input[type='checkbox'], input[type='radio'] { margin-right: 10px; }");
+        out.println("label { display: block; margin-bottom: 5px; }");
+        out.println("input[type='submit'], input[type='reset'] { margin-top: 10px; padding: 10px 15px; }");
+        out.println("</style>");
+        out.println("</head>");
         out.println("<body>");
-        out.println("<h2>Yet Another e-Bookshop</h2>");
+        out.println("<h2>Welcome to Yet Another e-Bookshop</h2>");
         out.println("<form method='get' action='eshopquery'>");
-        out.println("Choose an author:<br /><br />");
+        out.println("<h3>Choose an author:</h3>");
         
         try (
-            // Step 1: Allocate a database 'Connection' object
             Connection conn = DriverManager.getConnection(
                   "jdbc:mysql://localhost:3306/ebookshop?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
-                  "myuser", "xxxx");   // For MySQL
-                  // The format is: "jdbc:mysql://hostname:port/databaseName", "username", "password"
-   
-            // Step 2: Allocate a 'Statement' object in the Connection
+                  "myuser", "xxxx");
+
             Statement stmt = conn.createStatement();
-         ) {
-            // Step 3: Execute a SQL SELECT query
+        ) {
             String sqlStr = "SELECT DISTINCT author FROM books";
             ResultSet rs = stmt.executeQuery(sqlStr);
-             
-            // Step 4: Process the ResultSet by scrolling the cursor forward via next().
+            
             while (rs.next()) {
-                out.println("<input type='checkbox' name='author' value='" + rs.getString("author") + "' />" + rs.getString("author"));
-            }
+                    out.println("<label><input type='checkbox' name='author' value='" + rs.getString("author") + "' />"  + rs.getString("author") + "</label>");
+                }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        out.println("<br /><br />");
-        out.println("Choose a price range:");
-        out.println("<input type='radio' name='price' value='50' />less than $50");
-        out.println("<input type='radio' name='price' value='100' />less than $100");
-        out.println("<br /><br />");
+        
+        out.println("<h3>Choose a price range:</h3>");
+        out.println("<label><input type='radio' name='price' value='50' required />less than $50</label>");
+        out.println("<label><input type='radio' name='price' value='100' required />less than $100</label>");
         out.println("<input type='submit' value='Search' />");
         out.println("<input type='reset' value='Clear' />");
         out.println("</form>");
