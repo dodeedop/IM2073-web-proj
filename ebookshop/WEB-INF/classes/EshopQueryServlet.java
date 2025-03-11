@@ -37,6 +37,8 @@ public class EshopQueryServlet extends HttpServlet {
       ) {
         // Step 3: Execute a SQL SELECT query
         String[] authors = request.getParameterValues("author");  // Returns an array of Strings
+        String priceStr = request.getParameter("price");
+        double price = priceStr != null ? Double.parseDouble(priceStr) : Double.MAX_VALUE;
         if (authors == null) {
          out.println("<h2>No author selected. Please go back to select author(s)</h2><body></html>");
          return; // Exit doGet()
@@ -49,7 +51,7 @@ public class EshopQueryServlet extends HttpServlet {
             sqlStr += "'" + authors[i] + "'";    // no commas
             }
         }
-        sqlStr += ") AND qty > 0 ORDER BY author ASC, title ASC";
+        sqlStr += ") AND price < " +price+ " AND qty > 0 ORDER BY author ASC, title ASC";
 
          out.println("<h3>Thank you for your query.</h3>");
          out.println("<p>Your SQL statement is: " + sqlStr + "</p>"); // Echo for debugging
