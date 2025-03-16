@@ -15,9 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RegisterDao {
-    private String dburl="jdbc:mysql://localhost:3306/userdb";
-    private String dbuname="root";
-    private String dbpassword="mysql";
+    private String dburl="jdbc:mysql://localhost:3306/ebookshop";
+    private String dbuname="myuser";
+    private String dbpassword="xxxx";
     private String dbdriver="com.mysql.jdbc.Driver";
     
     public Connection getConnection(){
@@ -42,7 +42,7 @@ public class RegisterDao {
         loadDriver(dbdriver);
         Connection con=getConnection();
         String result= "data entered successfully";
-        String sql= "insert into userdb.member values(?,?,?,?)";
+        String sql= "insert into ebookshop.member values(?,?,?,?)";
     try{
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1, member.getUname());
