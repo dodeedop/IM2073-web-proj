@@ -32,7 +32,7 @@ public class EShopDisplayServlet extends HttpServlet {
         out.println("</style>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h2>Welcome to Yet Another e-Bookshop</h2>");
+        out.println("<h2>Welcome to The e-Bookshop</h2>");
         out.println("<form method='get' action='eshopquery'>");
         out.println("<h3>Choose an author:</h3>");
         
