@@ -21,7 +21,7 @@ public class EShopDisplayServlet extends HttpServlet {
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
         out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-        out.println("<title>Yet Another e-Bookshop</title>");
+        out.println("<title>The e-Bookshop</title>");
         out.println("<style>");
         out.println("body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }");
         out.println("h2 { color: #333; }");
