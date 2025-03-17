@@ -11,8 +11,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ebookshop registration</title>
     </head>
+    
+    <script type="text/javascript">
+    function ValidateEmail(email)
+{
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(email.value.match(mailformat))
+    {
+        document.getElementById('password').focus();
+        return true;
+    }
+    else
+    {
+        alert("You have entered an invalid email address!");
+        document.getElementById('email').focus();
+        return false;
+    }
+}
+</script>
+    
     <body>
-        <form action="Register" method="post">
+        <form action="Register" method="post" onclick="ValidateEmail(document.getElementById('email'))">
             <table>
                 <tr><td>User Name</td><td><input type="text" name="uname"></td></tr>
                 <tr><td>Password</td><td><input type="password" name="password"></td></tr>
