@@ -24,3 +24,10 @@ create table order_records (
   cust_email  varchar(30),
   cust_phone  char(8));
 select * from order_records;
+drop table if exists member;
+create table member (
+   uname varchar,
+   password varchar,
+   email varchar,
+   phone varchar);
+select * from member;
