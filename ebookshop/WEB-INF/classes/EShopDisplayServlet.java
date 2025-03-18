@@ -60,7 +60,7 @@ public class EShopDisplayServlet extends HttpServlet {
         out.println("<input type='reset' value='Clear' />");
         out.println("</form>");
         out.println("<form>");
-        out.println("<form method='get' action='Register'>")
+        out.println("<form method='get' action='Register'>");
         out.println("<input type='Member registration' value='Search' />");
         out.println("</form>");
         out.println("</body></html>");
